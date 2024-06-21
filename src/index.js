@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Form from "./component/Form/Form";
+import {ProductProvider} from "./component/ContextAPI/ProductContext";
+import View from "./component/View/View";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/*<App />*/}
+      <ProductProvider>
+          <View></View>
+          <Form></Form>
+      </ProductProvider>
   </React.StrictMode>
 );
 

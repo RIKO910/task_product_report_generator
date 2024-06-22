@@ -10,7 +10,7 @@ import View from "./component/View/View";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/*<App />*/}
+    <App />
       <ProductProvider>
           <View></View>
           <Form></Form>

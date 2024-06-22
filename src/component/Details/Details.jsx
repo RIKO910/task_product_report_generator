@@ -1,10 +1,38 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 const Details = ({ product, setProduct }) => {
     const handleChange = (type, value) => {
-        setProduct(prevProduct => ({ ...prevProduct, [type]: value }));
+        setProduct(prevProduct => {
+            let updatedProduct = { ...prevProduct, [type]: value };
+
+            // Calculate tax amount dynamically
+            if (type === 'totalAmount' && showTIN) {
+                const totalAmount = parseFloat(value);
+                if (!isNaN(totalAmount)) {
+                    updatedProduct.taxAmount = (totalAmount * 8) / 100;
+                } else {
+                    updatedProduct.taxAmount = '';
+                }
+            }
+
+            // Calculate grandTotal based on totalAmount and taxAmount
+            if (type === 'totalAmount' || type === 'taxAmount') {
+                const totalAmount = parseFloat(updatedProduct.totalAmount);
+                const taxAmount = parseFloat(updatedProduct.taxAmount) || 0;
+
+                if (!isNaN(totalAmount) && !isNaN(taxAmount)) {
+                    updatedProduct.grandTotal = totalAmount + taxAmount;
+                } else {
+                    updatedProduct.grandTotal = '';
+                }
+            }
+
+            return updatedProduct;
+        });
     };
+
     const [showTIN, setShowTIN] = useState(false);
+
     return (
         <div>
             <div className="grid grid-cols-2 gap-6">

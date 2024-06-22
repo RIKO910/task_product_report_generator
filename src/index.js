@@ -12,7 +12,7 @@ root.render(
   <React.StrictMode>
     <App />
       <ProductProvider>
-          <View></View>
+          {/*<View></View>*/}
           <Form></Form>
       </ProductProvider>
   </React.StrictMode>

@@ -50,7 +50,7 @@ const View = () => {
 
     return (
         <div>
-            <h1 className="mt-6 font-bold flex justify-center text-2xl underline">Product List</h1>
+
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

@@ -47,6 +47,16 @@ const View = () => {
         document.body.removeChild(link);
     };
 
+    const totalSum = productList.reduce((sum, product) => {
+        return sum + (parseFloat(product.totalAmount) || 0);
+    }, 0);
+    const grandTotal = productList.reduce((sum, product) => {
+        return sum + (parseFloat(product.grandTotal) || 0);
+    }, 0);
+
+    const taxTotal = productList.reduce((sum, product) => {
+        return sum + (parseFloat(product.taxAmount) || 0);
+    }, 0);
 
     return (
         <div>
@@ -86,6 +96,22 @@ const View = () => {
                         </tr>
                     ))}
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total =</td>
+                        <td >{totalSum.toFixed(2)}</td>
+                        <td >{grandTotal.toFixed(2)}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td >{taxTotal.toFixed(2)}</td>
+
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
             <div className="flex justify-center">
